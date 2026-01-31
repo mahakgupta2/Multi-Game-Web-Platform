@@ -113,51 +113,33 @@ const Dashboard = () => {
       {/* Profile Drawer */}
       {open && (
         <>
-          {/* Backdrop */}
-          <div
-            className="fixed inset-0 bg-black/60 backdrop-blur-sm z-40"
-            onClick={() => setOpen(false)}
-          ></div>
+          <div className="fixed inset-0 bg-black/60" onClick={() => setOpen(false)}></div>
 
-          {/* Drawer */}
-          <div className="fixed top-0 right-0 h-full w-80 bg-gray-900 shadow-2xl p-6 z-50 transform animate-slideIn overflow-y-auto">
-            <button
-              onClick={() => setOpen(false)}
-              className="text-gray-400 hover:text-white mb-6"
-            >
-              ✖ Close
-            </button>
+          <div className="fixed top-0 right-0 w-80 h-full bg-gray-900 p-6 z-50">
+            <button onClick={() => setOpen(false)}>✖</button>
 
-            {/* User Info */}
-            <div className="text-center mb-8">
-              <div className="text-6xl mb-2 animate-bounce">👤</div>
+            <div className="text-center my-6">
+              <div className="text-6xl">👤</div>
               <h3 className="text-xl font-bold">{user.name}</h3>
               <p className="text-gray-400 text-sm">{user.email}</p>
-              <p className="text-gray-300 mt-2">Games Played: {user.gamesPlayed || 0}</p>
             </div>
 
-            {/* Leaderboard */}
-            <div className="mb-6">
-              <h4 className="text-lg font-semibold mb-4 text-center">🏆 Leaderboard</h4>
-              <div className="space-y-3">
-                {mockLeaderboard.map((player, idx) => (
-                  <div key={idx} className="flex justify-between items-center bg-gray-800/70 px-4 py-2 rounded-xl shadow hover:scale-105 transform transition">
-                    <span>{idx + 1}. {player.name}</span>
-                    <span className="font-bold text-indigo-400">{player.score}</span>
-                  </div>
-                ))}
-              </div>
-            </div>
+            <button
+              onClick={() => {
+                setOpen(false);
+                navigate("/profile");
+              }}
+              className="w-full mb-3 bg-indigo-500 py-2 rounded-lg"
+            >
+               View Profile
+            </button>
 
-            {/* Logout Button */}
-            <div className="mt-8">
-              <button
-                onClick={Logout}
-                className="w-full bg-red-500 px-4 py-2 rounded-lg hover:bg-red-600 shadow-md transition"
-              >
-                Logout
-              </button>
-            </div>
+            <button
+              onClick={Logout}
+              className="w-full bg-red-500 py-2 rounded-lg"
+            >
+              Logout
+            </button>
           </div>
         </>
       )}

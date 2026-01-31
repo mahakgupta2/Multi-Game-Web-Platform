@@ -1,8 +1,12 @@
 import { Link, useNavigate } from "react-router-dom";
 import axios from 'axios'
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { toast } from "react-toastify";
 const Login = () => {
+  useEffect(()=>{
+    const token = localStorage.getItem("token");
+      if (token) return navigate("/dashboard");
+  },[])
   const navigate = useNavigate()
   const [email,setEmail] = useState("");
   const [password,setPassword] = useState("");
